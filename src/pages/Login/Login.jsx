@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { loginUser } = useAuth();
+
+    const onSubmit = data => {
+        loginUser(data.email, data.password)
+            .then(result => console.log(result.user))
+            .catch(error => console.log(error.message))
+    };
 
     const [show, setShow] = useState(false);
 

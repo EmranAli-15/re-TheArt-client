@@ -1,13 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user } = useAuth();
 
     const navList = <>
-        <li> <NavLink>Home</NavLink> </li>
+        <li> <NavLink to='/'>Home</NavLink> </li>
         <li> <NavLink>Instructor</NavLink> </li>
         <li> <NavLink>Classes</NavLink> </li>
-        <li> <NavLink>Dashboard</NavLink> </li>
+        <li> <NavLink to='/dashboard'>Dashboard</NavLink> </li>
     </>
 
     return (
@@ -33,7 +35,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className='btn btn-ghost btn-xs'> <NavLink to='/login'>Go</NavLink> </button>
+                {
+                    user ? <button className='btn btn-ghost btn-xs'> <NavLink to='/login'>null</NavLink> </button> :
+                        <button className='btn btn-ghost btn-xs'> <NavLink to='/login'>Login</NavLink> </button>
+                }
             </div>
         </div>
     );

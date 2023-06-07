@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { createUer, updateUserProfile, logOut } = useAuth();
+
     const onSubmit = data => {
         console.log(data)
         setError('');
@@ -15,6 +19,19 @@ const Register = () => {
         if (password !== confirm) {
             return setError('password does not matched');
         }
+
+        createUer(data.email, data.password)
+            .then(result => {
+                updateUserProfile(data.name, data.photo)
+                    .then(result => {
+                        logOut()
+                            .then(result => { })
+                            .catch(error => { })
+                    })
+                navigate('/login')
+            })
+            .catch(error => console.log(error.message))
+
     };
 
     const [show, setShow] = useState(false);
@@ -57,7 +74,7 @@ const Register = () => {
                             />
                             {errors.email?.type === 'required' && <p className='alert' role="alert">email is required</p>}
                         </div>
-                        
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
@@ -77,7 +94,7 @@ const Register = () => {
                             {errors.password?.type === 'minLength' && <p className='alert'>Password must be 6 characters</p>}
                             {errors.password?.type === 'pattern' && <p className='alert' role="alert">password must be an capital and special letter</p>}
                         </div>
-                        
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Confirm Password</span>
@@ -92,7 +109,7 @@ const Register = () => {
                                 error
                             }</p>
                         </div>
-                        
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Photo URL</span>
