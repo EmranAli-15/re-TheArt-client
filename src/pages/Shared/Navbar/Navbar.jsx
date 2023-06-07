@@ -33,7 +33,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <button className='btn btn-ghost btn-xs'> <NavLink to='/login'>Go</NavLink> </button>
             </div>
         </div>
     );
