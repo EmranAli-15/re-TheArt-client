@@ -32,7 +32,6 @@ const AddClass = () => {
                 if (imgResponse.success) {
                     const imgURL = imgResponse.data.display_url;
                     const newItem = { name, price, seats, image: imgURL, userName, userEmail };
-                    console.log(newItem);
                     axiosSecure.post('/classes', newItem)
                         .then(data => {
                             console.log(data.data);
