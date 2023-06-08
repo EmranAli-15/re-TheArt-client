@@ -14,7 +14,6 @@ const Register = () => {
     const { createUer, updateUserProfile, logOut } = useAuth();
 
     const onSubmit = data => {
-        console.log(data)
         setError('');
         const password = data.password;
         const confirm = data.confirmPass;
@@ -25,7 +24,7 @@ const Register = () => {
         const savedUser = { name, email, photo, role }
 
         if (password !== confirm) {
-            return setError('password does not matched');
+            return setError('password not matched');
         }
 
         createUer(data.email, data.password)
@@ -53,11 +52,12 @@ const Register = () => {
                                     })
                                     .catch(error => { })
                             })
-
                     })
                 navigate('/login')
             })
-            .catch(error => console.log(error.message))
+            .catch(error => {
+                setError('something wrong, try again')
+            })
 
     };
 
@@ -65,101 +65,99 @@ const Register = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col">
+            <div className="hero-content flex-col md:w-2/4">
                 <div className="text-center">
                     <h1 className="text-5xl font-bold">Register now!</h1>
                 </div>
-                <div className="card flex-shrink-0 w-full relative max-w-sm shadow-2xl bg-base-100">
+                <p className='text-red-600 text-center text-xl'>{error}</p>
+                <div className="card flex-shrink-0 w-full relative shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input
-                                type="text"
-                                {...register("name", {
-                                    required: true
-                                })}
-                                placeholder="email"
-                                className="input input-bordered"
-                                aria-invalid={errors.name ? "true" : "false"}
-                            />
-                            {errors.name?.type === 'required' && <p className='alert' role="alert">email is required</p>}
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input
-                                type="email"
-                                {...register("email", {
-                                    required: true
-                                })}
-                                placeholder="email"
-                                className="input input-bordered"
-                                aria-invalid={errors.email ? "true" : "false"}
-                            />
-                            {errors.email?.type === 'required' && <p className='alert' role="alert">email is required</p>}
-                        </div>
 
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input
-                                type={show ? 'text' : 'password'}
-                                {...register("password", {
-                                    pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-                                    required: true,
-                                    minLength: 6
-                                })}
-                                placeholder="password"
-                                className="input input-bordered"
-                                aria-invalid={errors.password ? "true" : "false"}
-                            />
-                            {errors.password?.type === 'required' && <p className='alert' role="alert">password is required</p>}
-                            {errors.password?.type === 'minLength' && <p className='alert'>Password must be 6 characters</p>}
-                            {errors.password?.type === 'pattern' && <p className='alert' role="alert">password must be an capital and special letter</p>}
+                        <div className="flex items-center">
+                            <>Name</>
+                            <> {errors.name?.type === 'required' && <p className="register-alert">required</p>}</>
                         </div>
+                        <input
+                            type="text"
+                            {...register("name", {
+                                required: true
+                            })}
+                            placeholder="email"
+                            className="input input-bordered"
+                            aria-invalid={errors.name ? "true" : "false"}
+                        />
 
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Confirm Password</span>
-                            </label>
-                            <input
-                                type={show ? 'text' : 'password'}
-                                {...register("confirmPass")}
-                                placeholder="confirm password"
-                                className="input input-bordered"
-                            />
-                            <p>{
-                                error
-                            }</p>
-                        </div>
 
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo URL</span>
-                            </label>
-                            <input
-                                type="text"
-                                {...register("photo", {
-                                    required: true
-                                })}
-                                placeholder="photo URL"
-                                className="input input-bordered"
-                                aria-invalid={errors.photo ? "true" : "false"}
-                            />
-                            {errors.photo?.type === 'required' && <p className='alert' role="alert">email is required</p>}
+                        <div className="flex items-center">
+                            <>Email</>
+                            <>{errors.email?.type === 'required' && <p className="register-alert">required</p>}</>
                         </div>
+                        <input
+                            type="email"
+                            {...register("email", {
+                                required: true
+                            })}
+                            placeholder="email"
+                            className="input input-bordered"
+                            aria-invalid={errors.email ? "true" : "false"}
+                        />
+
+
+                        <div className="flex items-center">
+                            <>Password</>
+                            <>
+                                {errors.password?.type === 'required' && <p className="register-alert">required</p>}
+                                {errors.password?.type === 'minLength' && <p className="register-alert">at least 6 digit</p>}
+                                {errors.password?.type === 'pattern' && <p className="register-alert">need a special & capital character</p>}
+                            </>
+                        </div>
+                        <input
+                            type={show ? 'text' : 'password'}
+                            {...register("password", {
+                                pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+                                required: true,
+                                minLength: 6
+                            })}
+                            placeholder="password"
+                            className="input input-bordered"
+                            aria-invalid={errors.password ? "true" : "false"}
+                        />
+
+
+                        <div>
+                            <>Confirm Password</>
+                        </div>
+                        <input
+                            type={show ? 'text' : 'password'}
+                            {...register("confirmPass")}
+                            placeholder="confirm password"
+                            className="input input-bordered"
+                        />
+
+
+                        <div className="flex items-center">
+                            <>Photo URL</>
+                            <>{errors.photo?.type === 'required' && <p className="register-alert">required</p>}</>
+                        </div>
+                        <input
+                            type="text"
+                            {...register("photo", {
+                                required: true
+                            })}
+                            placeholder="photo URL"
+                            className="input input-bordered"
+                            aria-invalid={errors.photo ? "true" : "false"}
+                        />
+
+
                         <div className='form-control'>
                             <button className="btn btn-primary">
                                 <input type="submit" value="Register" />
                             </button>
                         </div>
                     </form>
-                    <div className='text-center'><SocialLogin></SocialLogin></div>
-                    <button onClick={() => setShow(!show)} className='absolute right-10 top-[267px]'>
+                    <div className='px-8'><SocialLogin></SocialLogin></div>
+                    <button onClick={() => setShow(!show)} className='absolute right-10 top-[253px]'>
                         {
                             show ? <BsEyeFill size={20}></BsEyeFill> :
                                 <BsEyeSlashFill size={20}></BsEyeSlashFill>

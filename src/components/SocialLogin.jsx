@@ -32,7 +32,7 @@ const SocialLogin = () => {
 
     return (
         <div>
-            <button onClick={handleLogin} className="btn btn-wide">
+            <button onClick={handleLogin} className="btn w-full">
                 <FcGoogle size={32}></FcGoogle>
             </button>
         </div>

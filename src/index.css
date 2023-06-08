@@ -4,6 +4,10 @@
 
 
 /* login and register form validation css class */
-.alert{
+.alert {
     @apply text-red-500 text-sm bg-transparent border-0 text-center h-0 py-1
+}
+
+.register-alert {
+    @apply text-red-500 text-end pr-12
 }
