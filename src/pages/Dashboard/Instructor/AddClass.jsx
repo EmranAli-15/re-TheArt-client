@@ -1,22 +1,45 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth'
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+
+const imageToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const AddClass = () => {
     const { user } = useAuth();
+    const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageToken}`
+    const [axiosSecure] = useAxiosSecure();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const from = event.target;
+        const form = event.target;
 
-        const name = from.name.value;
-        const photo = from.photo.value;
-        const seats = parseInt(from.seats.value);
-        const price = parseFloat(from.price.value);
-        const userName = from.userName.value;
-        const userEmail = from.userEmail.value;
+        const name = form.name.value;
+        const image = form.photo.files[0];
+        const seats = parseInt(form.seats.value);
+        const price = parseFloat(form.price.value);
+        const userName = form.userName.value;
+        const userEmail = form.userEmail.value;
 
-        const classData = { name, photo, seats, price, userName, userEmail };
-        console.log(classData);
+        const formData = new FormData();
+        formData.append('image', image);
+
+        fetch(image_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const newItem = { name, price, seats, image: imgURL, userName, userEmail };
+                    console.log(newItem);
+                    axiosSecure.post('/classes', newItem)
+                        .then(data => {
+                            console.log(data.data);
+                        })
+                }
+            })
+
     }
 
     return (
@@ -26,13 +49,13 @@ const AddClass = () => {
                     <label>
                         <span className="label-text">Class Name</span>
                     </label>
-                    <input type="text" name="name" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" />
+                    <input type="text" name="name" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" required/>
                 </div>
                 <div className='form-control'>
                     <label>
                         <span className="label-text">Class Image</span>
                     </label>
-                    <input type="file" name="photo" className="file-input file-input-bordered file-input-info w-full md:w-96" />
+                    <input type="file" name="photo" className="file-input file-input-bordered file-input-info w-full md:w-96" required/>
                 </div>
             </div>
 
@@ -41,13 +64,13 @@ const AddClass = () => {
                     <label>
                         <span className="label-text">Available Seats</span>
                     </label>
-                    <input type="number" name="seats" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" />
+                    <input type="number" name="seats" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" required/>
                 </div>
                 <div className='form-control'>
                     <label>
                         <span className="label-text">Price</span>
                     </label>
-                    <input type="number" name="price" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" />
+                    <input type="number" name="price" placeholder="Type here" className="input input-bordered input-info w-full md:w-96" required/>
                 </div>
             </div>
 
