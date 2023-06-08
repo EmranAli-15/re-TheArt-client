@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import SocialLogin from '../../components/SocialLogin';
 
 const Login = () => {
 
@@ -64,7 +65,9 @@ const Login = () => {
                                 <input type="submit" value="Login" />
                             </button>
                         </div>
+                        
                     </form>
+                    <div className='text-center'><SocialLogin></SocialLogin></div>
                     <button onClick={() => setShow(!show)} className='absolute right-10 top-[175px]'>
                         {
                             show ? <BsEyeFill size={20}></BsEyeFill> :

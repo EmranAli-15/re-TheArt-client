@@ -4,6 +4,7 @@ import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin';
 
 const Register = () => {
 
@@ -157,6 +158,7 @@ const Register = () => {
                             </button>
                         </div>
                     </form>
+                    <div className='text-center'><SocialLogin></SocialLogin></div>
                     <button onClick={() => setShow(!show)} className='absolute right-10 top-[267px]'>
                         {
                             show ? <BsEyeFill size={20}></BsEyeFill> :
