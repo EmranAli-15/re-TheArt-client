@@ -2,13 +2,15 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Navbar from '../pages/Shared/Navbar/Navbar';
 import Footer from '../pages/Shared/Footer/Footer';
+import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
 
 const Dashboard = () => {
-    const isAdmin = false;
-    const isInstructor = true;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
     return (
         <>
-        <Navbar></Navbar>
+            <Navbar></Navbar>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">

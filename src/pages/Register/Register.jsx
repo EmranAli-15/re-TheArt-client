@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
@@ -16,6 +17,12 @@ const Register = () => {
         setError('');
         const password = data.password;
         const confirm = data.confirmPass;
+        const name = data.name;
+        const email = data.email;
+        const photo = data.photo;
+        const role = 'student';
+        const savedUser = { name, email, photo, role }
+
         if (password !== confirm) {
             return setError('password does not matched');
         }
@@ -24,9 +31,28 @@ const Register = () => {
             .then(result => {
                 updateUserProfile(data.name, data.photo)
                     .then(result => {
-                        logOut()
-                            .then(result => { })
-                            .catch(error => { })
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                logOut()
+                                    .then(result => {
+                                        Swal.fire({
+                                            position: 'top-end',
+                                            icon: 'success',
+                                            title: 'Your work has been saved',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+                                    })
+                                    .catch(error => { })
+                            })
+
                     })
                 navigate('/login')
             })
