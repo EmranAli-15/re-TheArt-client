@@ -9,6 +9,8 @@ import MyClasses from "../pages/Dashboard/Instructor/MyClasses";
 import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Classes from "../pages/Classes/Classes";
+import SelectedClasses from "../pages/Dashboard/Student/selectedClasses";
+import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 
 
 const router = createBrowserRouter([
@@ -38,6 +40,15 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
         children: [
+            // student routes
+            {
+                path: '/dashboard/selectedClasses',
+                element: <SelectedClasses></SelectedClasses>
+            },
+            {
+                path: '/dashboard/enrolledClasses',
+                element: <EnrolledClasses></EnrolledClasses>
+            },
             // instructor routes
             {
                 path: '/dashboard/myClasses',

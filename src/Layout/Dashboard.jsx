@@ -37,8 +37,8 @@ const Dashboard = () => {
                             </> ||
                             isStudent &&
                             <>
-                                <li><a>User</a></li>
-                                <li><a>User</a></li>
+                                <li> <NavLink to='/dashboard/selectedClasses'>My Selected Classes</NavLink> </li>
+                                <li> <NavLink to='/dashboard/enrolledClasses'>My Enrolled Classes</NavLink> </li>
                             </>
                         }
                     </ul>
