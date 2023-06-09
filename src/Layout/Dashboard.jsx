@@ -4,10 +4,12 @@ import Navbar from '../pages/Shared/Navbar/Navbar';
 import Footer from '../pages/Shared/Footer/Footer';
 import useAdmin from '../hooks/useAdmin';
 import useInstructor from '../hooks/useInstructor';
+import useStudent from '../hooks/useStudent';
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
+    const [isStudent] = useStudent();
     return (
         <>
             <Navbar></Navbar>
@@ -33,6 +35,7 @@ const Dashboard = () => {
                                 <li> <NavLink to='/dashboard/myClasses'>My Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/addClass'>Add A Class</NavLink> </li>
                             </> ||
+                            isStudent &&
                             <>
                                 <li><a>User</a></li>
                                 <li><a>User</a></li>

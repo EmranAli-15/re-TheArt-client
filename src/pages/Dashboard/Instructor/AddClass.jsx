@@ -100,7 +100,7 @@ const AddClass = () => {
                 </div>
             </div>
             <button className="btn w-full md:w-[780px] mt-8 border-info">
-                <input type="submit" value="Add Class" />
+                <input className='cursor-pointer' type="submit" value="Add Class" />
             </button>
         </form>
     );

@@ -11,7 +11,6 @@ const useAdminClasses = () => {
         enabled: !loading,
         queryFn: async () => {
             const response = await axiosSecure(`/adminCanGetAllClasses?email=${user?.email}`)
-            console.log(response);
             return response.data;
         }
     })
