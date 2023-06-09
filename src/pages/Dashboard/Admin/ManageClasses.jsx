@@ -1,10 +1,9 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
-const MyClasses = () => {
-
+const ManageClasses = () => {
     const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure()
 
@@ -12,11 +11,10 @@ const MyClasses = () => {
         queryKey: ['admin-stats'],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure(`/instructorCanGet?email=${user?.email}`);
+            const res = await axiosSecure(`/adminCanGet?email=${user?.email}`);
             return res.data;
         }
     })
-
     return (
         <div className="overflow-x-auto md:p-2">
             <table className="table">
@@ -62,4 +60,4 @@ const MyClasses = () => {
     );
 };
 
-export default MyClasses;
+export default ManageClasses;
