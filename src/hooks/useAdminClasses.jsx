@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import useAuth from "./useAuth"
 import useAxiosSecure from "./useAxiosSecure";
 
-const useClasses = () => {
+const useAdminClasses = () => {
     const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
 
@@ -10,7 +10,7 @@ const useClasses = () => {
         queryKey: ['classes', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const response = await axiosSecure(`/instructorCanGet?email=${user?.email}`)
+            const response = await axiosSecure(`/adminCanGetAllClasses?email=${user?.email}`)
             console.log(response);
             return response.data;
         }
@@ -18,4 +18,4 @@ const useClasses = () => {
     return [classes, refetch]
 }
 
-export default useClasses
+export default useAdminClasses

@@ -12,7 +12,7 @@ const MyClasses = () => {
         queryKey: ['admin-stats'],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure(`/instructorCanGet?email=${user?.email}`);
+            const res = await axiosSecure(`/instructorClasses?email=${user?.email}`);
             return res.data;
         }
     })

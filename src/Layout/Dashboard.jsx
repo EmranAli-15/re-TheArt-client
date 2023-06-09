@@ -23,20 +23,20 @@ const Dashboard = () => {
                     <ul className="p-4 w-72 h-full bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         {
-                            isAdmin ?
-                                <>
-                                    <li> <NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink> </li>
-                                    <li> <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink> </li>
-                                </> :
-                                isInstructor ?
-                                    <>
-                                        <li> <NavLink to='/dashboard/myClasses'>My Classes</NavLink> </li>
-                                        <li> <NavLink to='/dashboard/addClass'>Add A Class</NavLink> </li>
-                                    </> :
-                                    <>
-                                        <li><a>User</a></li>
-                                        <li><a>User</a></li>
-                                    </>
+                            isAdmin &&
+                            <>
+                                <li> <NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink> </li>
+                                <li> <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink> </li>
+                            </> ||
+                            isInstructor &&
+                            <>
+                                <li> <NavLink to='/dashboard/myClasses'>My Classes</NavLink> </li>
+                                <li> <NavLink to='/dashboard/addClass'>Add A Class</NavLink> </li>
+                            </> ||
+                            <>
+                                <li><a>User</a></li>
+                                <li><a>User</a></li>
+                            </>
                         }
                     </ul>
 
