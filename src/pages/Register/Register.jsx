@@ -8,7 +8,7 @@ import SocialLogin from '../../components/SocialLogin';
 
 const Register = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { createUer, updateUserProfile, logOut } = useAuth();
@@ -45,7 +45,7 @@ const Register = () => {
                                         Swal.fire({
                                             position: 'top-end',
                                             icon: 'success',
-                                            title: 'Your work has been saved',
+                                            title: 'Account Created',
                                             showConfirmButton: false,
                                             timer: 1500
                                         })
