@@ -72,32 +72,33 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id}>
+                            users.map((users, index) => 
+                            <tr key={users._id}  className={`${user.email === users.email && 'bg-yellow-100 rounded'}`}>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={user.photo} />
+                                                <img src={users.photo} />
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    {user.name}
+                                    {users.name}
                                     <br />
-                                    <p>{user.email}</p>
+                                    <p>{users.email}</p>
                                 </td>
                                 <th>
-                                    {user.role === 'admin' && admin || user.role === 'instructor' && instructor || userAlt}
+                                    {users.role === 'admin' && admin || users.role === 'instructor' && instructor || userAlt}
                                 </th>
                                 <th>
-                                    <button onClick={() => handleInstructor(user._id)} disabled={user.role === 'instructor'} className="btn btn-ghost btn-xs">
-                                        {user.role === 'instructor' ? instructor : instructor}
+                                    <button onClick={() => handleInstructor(users._id)} disabled={users.role === 'instructor'} className="btn btn-ghost btn-xs">
+                                        {users.role === 'instructor' ? instructor : instructor}
                                     </button>
                                 </th>
                                 <th>
-                                    <button onClick={() => handleAdmin(user._id)} disabled={user.role === 'admin'} className="btn btn-ghost btn-xs">
-                                        {user.role === 'admin' ? admin : admin}
+                                    <button onClick={() => handleAdmin(users._id)} disabled={users.role === 'admin'} className="btn btn-ghost btn-xs">
+                                        {users.role === 'admin' ? admin : admin}
                                     </button>
                                 </th>
                             </tr>)
