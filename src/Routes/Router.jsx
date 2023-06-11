@@ -11,6 +11,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import Classes from "../pages/Classes/Classes";
 import SelectedClasses from "../pages/Dashboard/Student/selectedClasses";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
+import Payment from "../pages/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -58,7 +59,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/addClass',
                 element: <AddClass></AddClass>
             },
-            
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => (`${params.id}`)
+            },
+
             // admin routes
             {
                 path: '/dashboard/manageClasses',

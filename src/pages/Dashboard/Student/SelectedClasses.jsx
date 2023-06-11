@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import useSelected from '../../../hooks/useSelected';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
 import { useQuery } from 'react-query';
+import { FaMoneyCheckAlt, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import Payment from '../../Payment/Payment';
 
 const SelectedClasses = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -26,7 +28,6 @@ const SelectedClasses = () => {
         axiosSecure.post('/selectedClasses', selectedClass)
             .then(data => {
                 setData(data.data)
-                console.log(data.data);
             })
     }, [selected])
 
@@ -39,56 +40,57 @@ const SelectedClasses = () => {
     }
 
     return (
-        <div className="overflow-x-auto">
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        data.map(item =>
-                            <tr key={item._id}>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.image} />
+        <div>
+            <div className="overflow-x-auto">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>Name</th>
+                            <th>Job</th>
+                            <th>Favorite Color</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data.map(item =>
+                                <tr key={item._id}>
+                                    <th>
+                                    </th>
+                                    <td>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle w-12 h-12">
+                                                    <img src={item.image} />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">{item.name}</div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="font-bold">Hart Hagerty</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                                </td>
-                                <td>Purple</td>
-                                <th>
-                                    <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs">details</button>
-                                </th>
-                            </tr>)
-                    }
-                </tbody>
-            </table>
+                                    </td>
+                                    <td>
+                                        {item.instructorEmail}
+                                    </td>
+                                    <td>Purple</td>
+                                    <th>
+                                        <button className="btn btn-ghost btn-xs">
+                                            <Link to={`/dashboard/payment/${item._id}`}>
+                                                <FaMoneyCheckAlt className='text-green-500' size={20}></FaMoneyCheckAlt>
+                                            </Link>
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs"><FaTrash className='text-red-500' size={20}></FaTrash></button>
+                                    </th>
+                                </tr>)
+                            // [item._id, item.price]
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

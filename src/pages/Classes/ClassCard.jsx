@@ -12,8 +12,10 @@ const ClassCard = ({ card }) => {
 
     const handleSelected = (card) => {
         const dbId = card._id;
+        const price = card.price;
+        const status = 'selected';
         const email = user?.email;
-        const selected = { dbId, email };
+        const selected = { dbId, email, price, status };
         axiosSecure.post('/selectedClass', selected)
             .then(data => {
                 Swal.fire({
