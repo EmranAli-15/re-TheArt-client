@@ -5,34 +5,41 @@ import { useQuery } from 'react-query';
 
 const EnrolledClasses = () => {
 
-
+    const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
-    const { user, loading } = useAuth();
-    const [data, setData] = useState([])
-
-    const { data: paid = [] } = useQuery({
-        queryKey: ['isPaid', user?.email],
-        enabled: !loading,
-        queryFn: async () => {
-            const res = await axiosSecure(`/paidClass/${user?.email}`);
-            return res.data;
-        }
-    })
-
-    const paidClass = {
-        paidClasses: paid.map(classes => classes.dbId)
-    }
-
+    const [data, setData] = useState([]);
     useEffect(() => {
-        axiosSecure.post('/paidClasses', paidClass)
+        axiosSecure.get(`/paidClasses/${user?.email}`)
             .then(data => {
                 setData(data.data)
             })
-    }, [paid])
+    }, [])
+
+    console.log(data);
 
     return (
-        <div>
-            {data.length}
+        <div className="overflow-x-auto">
+            <table className="table">
+                {/* head */}
+                <thead>
+                    <tr>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        data.map(item =>
+                            <tr key={item._id}>
+                                <td>
+                                    <p className='text-lg'>{item.price}</p>
+                                </td>
+                                <td className='text-lg'>{item.date}</td>
+                            </tr>)
+                        // [item._id, item.price]
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };

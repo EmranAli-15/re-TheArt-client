@@ -25,7 +25,7 @@ const CheckoutForm = ({ info }) => {
             })
     }, [])
 
-    const update = { _id: oneClass._id, id: oneClass.dbId }
+    const update = { _id: oneClass._id, id: oneClass.dbId, email: oneClass.email, price: oneClass.price }
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
