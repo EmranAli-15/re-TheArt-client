@@ -25,6 +25,8 @@ const CheckoutForm = ({ info }) => {
             })
     }, [])
 
+    const update = { _id: oneClass._id, id: oneClass.dbId }
+
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
             .then(res => {
@@ -77,6 +79,8 @@ const CheckoutForm = ({ info }) => {
         if (paymentIntent.status === 'succeeded') {
             const transactionId = paymentIntent.id;
             setTransactionId(`Transaction completed : ${transactionId}`);
+            axiosSecure.patch('/paidClass', update)
+                .then(res => console.log(res.data))
         }
     }
 

@@ -4,7 +4,6 @@ import useAuth from '../../../hooks/useAuth';
 import { useQuery } from 'react-query';
 import { FaMoneyCheckAlt, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Payment from '../../Payment/Payment';
 
 const SelectedClasses = () => {
     const [axiosSecure] = useAxiosSecure();
