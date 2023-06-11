@@ -33,11 +33,11 @@ const ClassCard = ({ card }) => {
                 <hr />
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center gap-x-4'>
-                        <button onClick={() => handleApproved(_id)} className={`${status === 'pending' ? 'text-green-500' : ''} btn btn-sm`} disabled={status === 'approved'}><BsCheckLg size={20}></BsCheckLg></button>
-                        <button className='btn btn-sm text-red-500'><BsXLg size={20}></BsXLg></button>
+                        <button onClick={() => handleApproved(_id)} className={`${status === 'pending' ? 'text-green-500' : ''} btn btn-sm`} disabled={status === 'approved'}><BsCheckLg size={30}></BsCheckLg></button>
+                        <button className='btn btn-sm text-red-500' disabled={status === 'approved'}><BsXLg size={30}></BsXLg></button>
                     </div>
                     <div>
-                        <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={20}></BsSendCheckFill></button>
+                        <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></button>
                     </div>
                 </div>
             </div>

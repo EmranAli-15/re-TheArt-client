@@ -11,21 +11,23 @@ const ClassCard = ({ card }) => {
     const [axiosSecure] = useAxiosSecure();
 
     const handleSelected = (card) => {
+        console.log(card);
         const dbId = card._id;
         const price = card.price;
         const status = 'selected';
         const email = user?.email;
         const selected = { dbId, email, price, status };
-        axiosSecure.post('/selectedClass', selected)
-            .then(data => {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Class Saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            })
+        console.log(selected);
+        // axiosSecure.post('/selectedClass', selected)
+        //     .then(data => {
+        //         Swal.fire({
+        //             position: 'top-end',
+        //             icon: 'success',
+        //             title: 'Class Saved',
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //         })
+        //     })
     }
 
     return (
