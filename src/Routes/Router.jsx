@@ -12,6 +12,8 @@ import Classes from "../pages/Classes/Classes";
 import SelectedClasses from "../pages/Dashboard/Student/selectedClasses";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import Payment from "../pages/Payment/Payment";
+import AdminSecure from "./AdminSecure";
+import InstructorSecure from "./InstructorSecere";
 
 
 const router = createBrowserRouter([
@@ -50,29 +52,30 @@ const router = createBrowserRouter([
                 path: '/dashboard/enrolledClasses',
                 element: <EnrolledClasses></EnrolledClasses>
             },
+            
             // instructor routes
             {
                 path: '/dashboard/myClasses',
-                element: <MyClasses></MyClasses>
+                element: <InstructorSecure><MyClasses></MyClasses></InstructorSecure>
             },
             {
                 path: '/dashboard/addClass',
-                element: <AddClass></AddClass>
+                element: <InstructorSecure><AddClass></AddClass></InstructorSecure>
             },
             {
                 path: '/dashboard/payment/:id',
-                element: <Payment></Payment>,
+                element: <InstructorSecure><Payment></Payment></InstructorSecure>,
                 loader: ({ params }) => (`${params.id}`)
             },
 
             // admin routes
             {
                 path: '/dashboard/manageClasses',
-                element: <ManageClasses></ManageClasses>
+                element: <AdminSecure><ManageClasses></ManageClasses></AdminSecure>
             },
             {
                 path: '/dashboard/manageUsers',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminSecure><ManageUsers></ManageUsers></AdminSecure>
             },
         ]
     },
