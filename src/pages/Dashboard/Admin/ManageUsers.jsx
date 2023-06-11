@@ -22,7 +22,6 @@ const ManageUsers = () => {
     })
 
     const handleAuthorization = (data) => {
-        console.log(data);
         axiosSecure.patch('/authorization', data)
             .then(data => {
                 console.log(data.data)
@@ -32,12 +31,12 @@ const ManageUsers = () => {
 
     const handleInstructor = (id) => {
         console.log(id);
-        const user = { instructor: 'instructor', id: id };
+        const user = { role: 'instructor', id: id };
         handleAuthorization(user)
     }
 
     const handleAdmin = (id) => {
-        const user = { instructor: 'admin', id: id };
+        const user = { role: 'admin', id: id };
         handleAuthorization(user)
     }
 

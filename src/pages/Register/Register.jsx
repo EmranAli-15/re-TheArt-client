@@ -31,7 +31,7 @@ const Register = () => {
             .then(result => {
                 updateUserProfile(data.name, data.photo)
                     .then(result => {
-                        fetch('http://localhost:5000/users', {
+                        fetch('http://localhost:5000/createUser', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
