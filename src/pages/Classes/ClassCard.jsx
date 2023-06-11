@@ -29,7 +29,7 @@ const ClassCard = ({ card }) => {
     }
 
     return (
-        <div className="card card-compact w-full bg-base-100 shadow-xl">
+        <div className={`${seats === 0 && 'bg-red-500'} card card-compact w-full shadow-xl`}>
             <figure><img className='h-52' src={image} /></figure>
             <div className="card-body">
                 <div className='flex items-center justify-between'>
@@ -40,7 +40,7 @@ const ClassCard = ({ card }) => {
                 <p className='text-lg'>Available Seats : <span className='font-semibold'>{seats}</span></p>
                 <hr />
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleSelected(card)} disabled={!isStudent} className="btn btn-info">Select</button>
+                    <button onClick={() => handleSelected(card)} disabled={!isStudent || seats === 0} className="btn btn-info">Select</button>
                 </div>
             </div>
         </div>

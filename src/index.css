@@ -11,3 +11,7 @@
 .register-alert {
     @apply text-red-500 text-end pr-12
 }
+
+.active {
+    @apply bg-info text-white p-1 rounded-md
+}

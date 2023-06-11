@@ -14,6 +14,7 @@ import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import Payment from "../pages/Payment/Payment";
 import AdminSecure from "./AdminSecure";
 import InstructorSecure from "./InstructorSecere";
+import Common from "../pages/Dashboard/Common";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         children: [
             // student routes
             {
+                path: '/dashboard',
+                element: <Common></Common>
+            },
+            {
                 path: '/dashboard/selectedClasses',
                 element: <SelectedClasses></SelectedClasses>
             },
@@ -52,7 +57,12 @@ const router = createBrowserRouter([
                 path: '/dashboard/enrolledClasses',
                 element: <EnrolledClasses></EnrolledClasses>
             },
-            
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => (`${params.id}`)
+            },
+
             // instructor routes
             {
                 path: '/dashboard/myClasses',
@@ -61,11 +71,6 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addClass',
                 element: <InstructorSecure><AddClass></AddClass></InstructorSecure>
-            },
-            {
-                path: '/dashboard/payment/:id',
-                element: <InstructorSecure><Payment></Payment></InstructorSecure>,
-                loader: ({ params }) => (`${params.id}`)
             },
 
             // admin routes

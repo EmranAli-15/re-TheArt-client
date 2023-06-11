@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
@@ -12,8 +12,8 @@ const Navbar = () => {
     }
 
     const navList = <>
-        <li> <NavLink to='/'>Home</NavLink> </li>
-        <li> <NavLink>Instructor</NavLink> </li>
+        <li> <NavLink to='/' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink> </li>
+        <li> <NavLink to='/instructor'>Instructor</NavLink> </li>
         <li> <NavLink to='/allClasses'>Classes</NavLink> </li>
         <li>
             {
@@ -35,10 +35,10 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="flex space-x-8">
+                <ul className="flex space-x-8 text-lg font-semibold">
                     {
                         navList
                     }

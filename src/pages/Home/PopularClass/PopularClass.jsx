@@ -16,7 +16,7 @@ const PopularClass = () => {
         <div className='grid md:grid-cols-3 gap-4 my-8'>
             {
                 classes.map(item =>
-                    <div key={item._id} className="card w-full bg-base-100 shadow-xl">
+                    <div key={item._id} className="card w-full shadow-xl">
                         <figure><img className='h-56' src={item.image} /></figure>
                         <div className="card-body">
                             <h2 className="card-title">Name : {item.name}</h2>

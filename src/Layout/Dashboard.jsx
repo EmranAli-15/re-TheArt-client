@@ -22,12 +22,12 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="p-4 w-72 h-full bg-base-200 text-base-content">
+                    <ul className="p-4 w-64 h-full space-y-2 bg-base-200 mt-4 text-base-content">
                         {/* Sidebar content here */}
                         {
                             isAdmin &&
                             <>
-                                <li> <NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink> </li>
+                                <li> <NavLink to='/dashboard/manageClasses' className={({ isActive }) => (isActive ? 'active' : '')}>Manage Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink> </li>
                             </> ||
                             isInstructor &&
