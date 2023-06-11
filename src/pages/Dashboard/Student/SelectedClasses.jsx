@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import { useQuery } from 'react-query';
 import { FaMoneyCheckAlt, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SelectedClasses = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -32,10 +33,27 @@ const SelectedClasses = () => {
 
     const handleDelete = (id) => {
         const data = { id: id, email: user?.email };
-        axiosSecure.post('/deleteClass', data)
-            .then(data => {
-                refetch()
-            })
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.post('/deleteClass', data)
+                    .then(data => {
+                        refetch()
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    })
+            }
+        })
     }
 
     return (
@@ -43,21 +61,18 @@ const SelectedClasses = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
-                        <tr>
-                            <th>
-                            </th>
+                        <tr className='text-lg'>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                            <th></th>
+                            <th>Price</th>
+                            <th>Seats</th>
+                            <th>Enroll</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             data.map(item =>
                                 <tr key={item._id}>
-                                    <th>
-                                    </th>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
@@ -71,9 +86,9 @@ const SelectedClasses = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        {item.instructorEmail}
+                                        <p className='text-lg'>$ {item.price}</p>
                                     </td>
-                                    <td>Purple</td>
+                                    <td className='text-lg'>{item.seats}</td>
                                     <th>
                                         <button className="btn btn-ghost btn-xs">
                                             <Link to={`/dashboard/payment/${item._id}`}>
