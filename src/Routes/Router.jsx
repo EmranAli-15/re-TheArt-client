@@ -15,12 +15,14 @@ import Payment from "../pages/Payment/Payment";
 import AdminSecure from "./AdminSecure";
 import InstructorSecure from "./InstructorSecere";
 import Common from "../pages/Dashboard/Common";
+import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Prime></Prime>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

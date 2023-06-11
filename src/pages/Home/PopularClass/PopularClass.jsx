@@ -17,7 +17,7 @@ const PopularClass = () => {
             {
                 classes.map(item =>
                     <div key={item._id} className="card w-full shadow-xl">
-                        <figure><img className='h-56' src={item.image} /></figure>
+                        <figure><img className='h-56 w-[350px] rounded' src={item.image} /></figure>
                         <div className="card-body">
                             <h2 className="card-title">Name : {item.name}</h2>
                             <div className='flex items-center justify-between'>
