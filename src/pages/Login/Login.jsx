@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/SocialLogin';
 
@@ -9,12 +9,15 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { loginUser } = useAuth();
+    const navigate = useNavigate();
     const [error, setError] = useState('');
 
     const onSubmit = data => {
         setError('');
         loginUser(data.email, data.password)
-            .then(result => { })
+            .then(result => {
+                navigate('/');
+            })
             .catch(error => {
                 setError('email or password not matched')
             })
@@ -30,7 +33,7 @@ const Login = () => {
                 </div>
                 <p className='text-center text-red-600 text-xl'>{error}</p>
                 <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
-                
+
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body relative">
 
                         <div className="flex items-center">

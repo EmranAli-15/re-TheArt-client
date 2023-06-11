@@ -27,16 +27,19 @@ const Dashboard = () => {
                         {
                             isAdmin &&
                             <>
-                                <li> <NavLink to='/dashboard/manageClasses' className={({ isActive }) => (isActive ? 'active' : '')}>Manage Classes</NavLink> </li>
+                                <li> <NavLink to='/dashboard' className={({ isActive }) => (isActive ? 'active' : '')}>WELCOME</NavLink> </li>
+                                <li> <NavLink to='/dashboard/manageClasses'>Manage Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink> </li>
                             </> ||
                             isInstructor &&
                             <>
+                                <li> <NavLink to='/dashboard'>WELCOME</NavLink> </li>
                                 <li> <NavLink to='/dashboard/myClasses'>My Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/addClass'>Add A Class</NavLink> </li>
                             </> ||
                             isStudent &&
                             <>
+                                <li> <NavLink to='/dashboard'>WELCOME</NavLink> </li>
                                 <li> <NavLink to='/dashboard/selectedClasses'>My Selected Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/enrolledClasses'>My Enrolled Classes</NavLink> </li>
                             </>

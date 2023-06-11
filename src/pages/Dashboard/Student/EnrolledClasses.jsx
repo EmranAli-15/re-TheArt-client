@@ -13,9 +13,7 @@ const EnrolledClasses = () => {
             .then(data => {
                 setData(data.data)
             })
-    }, [])
-
-    console.log(data);
+    }, [user])
 
     return (
         <div className="overflow-x-auto">

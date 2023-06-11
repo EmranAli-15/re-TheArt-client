@@ -51,37 +51,39 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <Common></Common>
             },
+            // /selectedClasses
             {
-                path: '/dashboard/selectedClasses',
+                path: 'selectedClasses',
                 element: <SelectedClasses></SelectedClasses>
             },
+            
             {
-                path: '/dashboard/enrolledClasses',
+                path: 'enrolledClasses',
                 element: <EnrolledClasses></EnrolledClasses>
             },
             {
-                path: '/dashboard/payment/:id',
+                path: 'payment/:id',
                 element: <Payment></Payment>,
                 loader: ({ params }) => (`${params.id}`)
             },
 
             // instructor routes
             {
-                path: '/dashboard/myClasses',
+                path: 'myClasses',
                 element: <InstructorSecure><MyClasses></MyClasses></InstructorSecure>
             },
             {
-                path: '/dashboard/addClass',
+                path: 'addClass',
                 element: <InstructorSecure><AddClass></AddClass></InstructorSecure>
             },
 
             // admin routes
             {
-                path: '/dashboard/manageClasses',
+                path: 'manageClasses',
                 element: <AdminSecure><ManageClasses></ManageClasses></AdminSecure>
             },
             {
-                path: '/dashboard/manageUsers',
+                path: 'manageUsers',
                 element: <AdminSecure><ManageUsers></ManageUsers></AdminSecure>
             },
         ]
