@@ -28,7 +28,7 @@ const Navbar = () => {
 
     const navList = <>
         <li> <NavLink to='/' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink> </li>
-        <li> <NavLink to='/instructor'>Instructor</NavLink> </li>
+        <li> <NavLink to='/allInstructor'>Instructor</NavLink> </li>
         <li> <NavLink to='/allClasses'>Classes</NavLink> </li>
         <li>
             {

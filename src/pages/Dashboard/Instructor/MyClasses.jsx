@@ -2,6 +2,7 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
+import { FaEdit } from "react-icons/fa";
 
 const MyClasses = () => {
 
@@ -26,7 +27,6 @@ const MyClasses = () => {
                         <th>Image</th>
                         <th>Status</th>
                         <th>Students</th>
-                        <th>Feedback</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,17 +42,16 @@ const MyClasses = () => {
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td className={`${classes.status === 'denied' ? 'text-red-500' : ''} text-[16px]`}>
                                 {classes.status}
                             </td>
                             <td>
                                 {classes.students}
                             </td>
-                            <td>
-                                {classes.feedback ? feedback : ''}
-                            </td>
                             <th>
-                                <button>Edit</button>
+                                <button>
+                                    <FaEdit className='text-info' size={30}></FaEdit>
+                                </button>
                             </th>
                         </tr>)
                     }

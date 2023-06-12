@@ -1,47 +1,35 @@
 import React from 'react';
 import { BsSendCheckFill, BsCheckLg, BsXLg } from "react-icons/bs";
-import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAdminClasses from '../../../hooks/useAdminClasses';
 
 const ClassCard = ({ card }) => {
     const { name, image, price, seats, instructorName, instructorEmail, status, _id } = card;
-    const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure()
     const [, refetch] = useAdminClasses();
 
-    const handleApproved = (id) => {
-        axiosSecure.patch(`/updateClasses/${id}`)
+
+    const handleStatus = (data) => {
+        axiosSecure.patch('/updateClassStatus', data)
             .then(res => {
-                console.log(res.data);
                 refetch();
             });
     }
 
-    const handleMessage = (e) => {
-        // e.preventDefault();
-        // const message = e.target.message.value;
-        // const id = e.target.id.value;
-        // console.log(message, id);
-        // e.target.reset();
-        console.log(e._id, e.instructorEmail);
+    const handleApproved = (id) => {
+        const status = 'approved';
+        const data = { id: id, status: status };
+        handleStatus(data);
+    }
+
+    const handleDenied = (id) => {
+        const status = 'denied';
+        const data = { id: id, status: status };
+        handleStatus(data);
     }
 
     return (
         <div>
-            <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-
-            <div className="modal">
-                <div className="modal-box">
-                    <input name="id" type="text" defaultValue={_id} readOnly placeholder="Type here" className="input input-bordered input-info w-full" />
-                    <textarea name="message" className="textarea textarea-info w-full" placeholder="Bio"></textarea>
-                    <div className='text-right'>
-                        <button onClick={() => handleMessage(_id)}>ok</button>
-                    </div>
-                </div>
-                <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
-            </div>
-
             <div className="card card-compact w-full bg-base-100 shadow-xl">
                 <figure><img className='h-44' src={image} /></figure>
                 <div className="card-body">
@@ -56,12 +44,11 @@ const ClassCard = ({ card }) => {
                     <hr />
                     <div className='flex justify-between items-center'>
                         <div className='flex items-center gap-x-4'>
-                            <button onClick={() => handleApproved(_id)} className={`${status === 'pending' ? 'text-green-500' : ''} btn btn-sm`} disabled={status === 'approved'}><BsCheckLg size={30}></BsCheckLg></button>
-                            <button className='btn btn-sm text-red-500' disabled={status === 'approved'}><BsXLg size={30}></BsXLg></button>
+                            <button onClick={() => handleApproved(_id)} className={`${status === 'pending' ? 'text-green-500' : ''} btn btn-sm`} disabled={status !== 'pending'}><BsCheckLg size={30}></BsCheckLg></button>
+                            <button onClick={() => handleDenied(_id)} className='btn btn-sm text-red-500' disabled={status !== 'pending'}><BsXLg size={30}></BsXLg></button>
                         </div>
                         <div>
-                            <label htmlFor="my_modal_7" onClick={()=>handleMessage(card)} className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></label>
-                            {/* <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></button> */}
+                            <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></button>
                         </div>
                     </div>
                 </div>

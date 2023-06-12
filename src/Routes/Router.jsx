@@ -16,6 +16,8 @@ import AdminSecure from "./AdminSecure";
 import InstructorSecure from "./InstructorSecere";
 import Common from "../pages/Dashboard/Common";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
+import Instructor from "../pages/Instructor/Instructor";
+import Feedback from "../pages/Dashboard/Instructor/Feedback";
 
 
 const router = createBrowserRouter([
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/allClasses',
                 element: <Classes></Classes>
+            },
+            {
+                path: '/allInstructor',
+                element: <Instructor></Instructor>
             },
             {
                 path: '/login',
@@ -51,12 +57,11 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <Common></Common>
             },
-            // /selectedClasses
+
             {
                 path: 'selectedClasses',
                 element: <SelectedClasses></SelectedClasses>
             },
-            
             {
                 path: 'enrolledClasses',
                 element: <EnrolledClasses></EnrolledClasses>
@@ -75,6 +80,10 @@ const router = createBrowserRouter([
             {
                 path: 'addClass',
                 element: <InstructorSecure><AddClass></AddClass></InstructorSecure>
+            },
+            {
+                path: 'feedback',
+                element: <InstructorSecure><Feedback></Feedback></InstructorSecure>
             },
 
             // admin routes

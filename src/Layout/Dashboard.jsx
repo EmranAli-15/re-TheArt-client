@@ -36,6 +36,7 @@ const Dashboard = () => {
                                 <li> <NavLink to='/dashboard'>WELCOME</NavLink> </li>
                                 <li> <NavLink to='/dashboard/myClasses'>My Classes</NavLink> </li>
                                 <li> <NavLink to='/dashboard/addClass'>Add A Class</NavLink> </li>
+                                <li> <NavLink to='/dashboard/feedback'>Feedback</NavLink> </li>
                             </> ||
                             isStudent &&
                             <>
