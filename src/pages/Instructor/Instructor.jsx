@@ -16,7 +16,7 @@ const Instructor = () => {
     useTitle('Instructor')
     return (
         <div>
-            <h1 className='text-lg md:text-4xl mt-20 mb-8 font-serif uppercase font-medium text-center'>Popular Instructor</h1>
+            <h1 className='text-lg md:text-4xl mt-20 mb-8 font-serif uppercase font-medium text-center'>all Instructor</h1>
             <div className='my-8 grid md:grid-cols-3 gap-4'>
                 {
                     instructor.map(man =>
