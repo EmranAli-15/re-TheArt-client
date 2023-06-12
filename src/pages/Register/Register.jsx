@@ -32,7 +32,7 @@ const Register = () => {
             .then(result => {
                 updateUserProfile(data.name, data.photo)
                     .then(result => {
-                        fetch('http://localhost:5000/createUser', {
+                        fetch('https://server-code-emranali-15.vercel.app/createUser', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

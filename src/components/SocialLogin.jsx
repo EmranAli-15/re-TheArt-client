@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 const photo = user.photoURL;
                 const role = 'student';
                 const savedUser = { name, email, photo, role };
-                fetch('http://localhost:5000/users', {
+                fetch('https://server-code-emranali-15.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
