@@ -18,6 +18,7 @@ import Common from "../pages/Dashboard/Common";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 import Instructor from "../pages/Instructor/Instructor";
 import Feedback from "../pages/Dashboard/Instructor/Feedback";
+import SendFeedback from "../pages/Dashboard/Admin/SendFeedback";
 
 
 const router = createBrowserRouter([
@@ -94,6 +95,11 @@ const router = createBrowserRouter([
             {
                 path: 'manageUsers',
                 element: <AdminSecure><ManageUsers></ManageUsers></AdminSecure>
+            },
+            {
+                path: 'sendFeedback/:id',
+                element: <AdminSecure><SendFeedback></SendFeedback></AdminSecure>,
+                loader: ({ params }) => (`${params.id}`)
             },
         ]
     },

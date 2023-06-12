@@ -2,6 +2,8 @@ import React from 'react';
 import { BsSendCheckFill, BsCheckLg, BsXLg } from "react-icons/bs";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAdminClasses from '../../../hooks/useAdminClasses';
+import { Link } from 'react-router-dom';
+import { stringify } from 'postcss';
 
 const ClassCard = ({ card }) => {
     const { name, image, price, seats, instructorName, instructorEmail, status, _id } = card;
@@ -48,7 +50,9 @@ const ClassCard = ({ card }) => {
                             <button onClick={() => handleDenied(_id)} className='btn btn-sm text-red-500' disabled={status !== 'pending'}><BsXLg size={30}></BsXLg></button>
                         </div>
                         <div>
-                            <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></button>
+                            <Link to={`/dashboard/sendFeedback/${_id}`}>
+                                <button className='btn btn-sm text-blue-500'><BsSendCheckFill size={30}></BsSendCheckFill></button>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { BsSendCheckFill, BsCheckLg, BsXLg } from "react-icons/bs";
 import useAdminClasses from '../../../hooks/useAdminClasses';
 import ClassCard from './ClassCard';
 
