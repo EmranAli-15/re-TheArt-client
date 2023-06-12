@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ClassCard from './ClassCard';
+import useTitle from '../../hooks/useTitle';
 
 const Classes = () => {
 
@@ -14,6 +15,7 @@ const Classes = () => {
                 setClasses(data);
             })
     }, [])
+    useTitle('Classes')
     return (
         <div className='grid md:grid-cols-4 gap-4 my-10'>
             {

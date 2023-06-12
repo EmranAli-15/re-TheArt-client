@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../components/SocialLogin';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
 
@@ -62,7 +63,7 @@ const Register = () => {
     };
 
     const [show, setShow] = useState(false);
-
+    useTitle('Register')
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col md:w-2/4">

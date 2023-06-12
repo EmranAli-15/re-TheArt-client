@@ -50,7 +50,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+                <Link to="/" className="btn btn-ghost normal-case text-xl">THE ART</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex space-x-8 text-lg font-semibold">
